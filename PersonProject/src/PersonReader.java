@@ -13,8 +13,10 @@ public class PersonReader {
 
     public static void main(String args[])  //static method
     {
-        System.out.println("        ID#   Firstname   Lastname  Title   YOB");
-        System.out.print("==============================================================================================================");
+        //System.out.printf("%-20s ID# %-20s Firstname %-20s Lastname %-20s Title %-20d YOB");
+        //System.out.printf("==============================================================================================================");
+        System.out.printf("%12s %-10s %-10s %-8s %-4s%n", "ID#", "Firstname", "Lastname", "Title", "YOB");
+        System.out.print("===========================================================");
 
         JFileChooser chooser = new JFileChooser();
         File selectedFile;
@@ -29,7 +31,7 @@ public class PersonReader {
             // Not sure if the toolkit is thread safe...
             File workingDirectory = new File(System.getProperty("user.dir"));
 
-            // Typiacally, we want the user to pick the file so we use a file chooser
+            // Typically, we want the user to pick the file, so we use a file chooser
             // kind of ugly code to make the chooser work with NIO.
             // Because the chooser is part of Swing it should be thread safe.
             chooser.setCurrentDirectory(workingDirectory);

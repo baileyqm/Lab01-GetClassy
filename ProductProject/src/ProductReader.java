@@ -17,8 +17,9 @@ public class ProductReader {
         File selectedFile;
         String rec = "";
 
-        System.out.println("          ID#     ProductName  Description   Price");
-        System.out.print("==============================================================================================================");
+        System.out.printf("%13s %14s %14s %8s%n", "ID#", "ProductName", "Description", "Price");
+        System.out.print("===========================================================");
+
 
         try
         {
