@@ -21,6 +21,7 @@ public class PersonReader {
         JFileChooser chooser = new JFileChooser();
         File selectedFile;
         String rec = "";
+        ArrayList<Person> personArray = new ArrayList<>();
 
         try
         {
@@ -56,8 +57,16 @@ public class PersonReader {
                 {
                     rec = reader.readLine();
                     line++;
+
+                    String[] atts = rec.split(", ");
+
+                    Person tempPerson = new Person(atts[0], atts[1], atts[2], atts[3], Integer.valueOf(atts[4]));
+
+                    personArray.add(tempPerson);
+
                     // echo to screen
                     System.out.printf("\nLine %4d %-60s ", line, rec);
+
                 }
                 reader.close(); // must close the file to seal it and flush buffer
                 System.out.println("\n\nData file read!");
@@ -72,10 +81,6 @@ public class PersonReader {
         {
             e.printStackTrace();
         }
-
-
-
-
     }
 }
 

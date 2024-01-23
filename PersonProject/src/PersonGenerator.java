@@ -15,22 +15,19 @@ public class PersonGenerator {
         String lName;
         String title;
         int YOB;
-        String csvRec;
-        Boolean done;
+        boolean done;
 
         Scanner in = new Scanner(System.in);
-
-        ArrayList<String> recs = new ArrayList<>();
+        ArrayList<Person> personArray = new ArrayList<>();
 
         do {
             ID = SafeInput.getNonZeroLenString(in, "Enter their ID");
             fName = SafeInput.getNonZeroLenString(in, "Enter their First Name");
             lName = SafeInput.getNonZeroLenString(in, "Enter their Last Name");
             title = SafeInput.getNonZeroLenString(in, "Enter their title");
-            YOB = SafeInput.getRangedInt(in, "Enter their Year of Birth", 1000,2024);
-            csvRec = ID + ", " + fName + ", "  + lName + ", " + title + ", " + YOB;
-
-            recs.add(csvRec);
+            YOB = SafeInput.getRangedInt(in, "Enter their Year of Birth", 1940,2000);
+            Person tempPerson = new Person(ID, fName, lName, title, YOB);
+            personArray.add(tempPerson);
 
             done = SafeInput.getYNConfirm(in, "Are you done");
         } while(!done);
@@ -50,9 +47,9 @@ public class PersonGenerator {
 
             // Finally can write the file LOL!
 
-            for(String rec : recs)
+            for(Person rec: personArray)
             {
-                writer.write(rec, 0, rec.length());  // stupid syntax for write rec
+                writer.write(rec.toCSVDataRecord(), 0, rec.toCSVDataRecord().length());  // stupid syntax for write rec
                 // 0 is where to start (1st char) the write
                 // rec. length() is how many chars to write (all)
                 writer.newLine();  // adds the new line

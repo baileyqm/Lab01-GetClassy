@@ -1,3 +1,4 @@
+import javax.lang.model.element.ModuleElement;
 import javax.swing.*;
 import java.io.*;
 import java.nio.file.Files;
@@ -20,6 +21,7 @@ public class ProductReader {
         System.out.printf("%13s %14s %14s %8s%n", "ID#", "ProductName", "Description", "Price");
         System.out.print("===========================================================");
 
+        ArrayList<Product> productsArray = new ArrayList<>();
 
         try
         {
@@ -55,6 +57,13 @@ public class ProductReader {
                 {
                     rec = reader.readLine();
                     line++;
+
+                    String[] atts = rec.split(", ");
+
+                    Product tempProd = new Product(atts[0], atts[1], atts[2], Double.parseDouble(atts[3]));
+
+                    productsArray.add(tempProd);
+
                     // echo to screen
                     System.out.printf("\nLine %4d %-60s ", line, rec);
                 }
@@ -71,9 +80,6 @@ public class ProductReader {
         {
             e.printStackTrace();
         }
-
-
-
 
     }
 }
