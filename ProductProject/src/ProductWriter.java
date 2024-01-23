@@ -20,16 +20,16 @@ public class ProductWriter {
 
         Scanner in = new Scanner(System.in);
 
-        ArrayList<String> recs = new ArrayList<>();
+        ArrayList<Product> recs = new ArrayList<>();
 
         do {
             ID = SafeInput.getNonZeroLenString(in, "Enter their ID");
             Name = SafeInput.getNonZeroLenString(in, "Enter the product name");
             Description = SafeInput.getNonZeroLenString(in,"Enter a product description");
             Cost = SafeInput.getDouble(in, "Enter the price of the item");
-            csvRec = ID + ", " + Name + ", " + Description + ", $" + Cost;
 
-            recs.add(csvRec);
+            Product tempProd = new Product(ID, Name, Description, Cost);
+            recs.add(tempProd);
 
             done = SafeInput.getYNConfirm(in, "Are you done");
         } while(!done);
@@ -49,9 +49,9 @@ public class ProductWriter {
 
             // Finally can write the file LOL!
 
-            for(String rec : recs)
+            for(Product rec : recs)
             {
-                writer.write(rec, 0, rec.length());  // stupid syntax for write rec
+                writer.write(rec.toCSVDataRecord(), 0, rec.toCSVDataRecord().length());  // stupid syntax for write rec
                 // 0 is where to start (1st char) the write
                 // rec. length() is how many chars to write (all)
                 writer.newLine();  // adds the new line
