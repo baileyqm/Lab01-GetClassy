@@ -55,9 +55,29 @@ public class Product {
         return this.ID + ", " + this.name + ", " + this.description + ", " + cost;
     }
 
+    public String toJSONRecord()
+    {
+        String retString = "";
+        char DQ = '\u0022';
+        retString =  "{" + DQ + "IDNum" + DQ + ":" + DQ + this.ID + DQ + ",";
+        retString += DQ + "name" + DQ + ":" + DQ + this.name + DQ + ",";
+        retString += " " + DQ + "description"  + DQ + ":" + DQ + this.description + DQ + ",";
+        retString += " " + DQ + "cost"  + DQ + ":" + this.cost + "}";
 
+        return retString;
+    }
 
+    public String toXMLRecord()
+    {
+        String retString = "";
 
+        retString = "<Product>" + "<ID>" + this.ID + "</ID>";
+        retString += "<name>" + this.name + "</name>";
+        retString += "<description>" + this.description + "</description>";
+        retString += "<cost>" + this.cost + "</cost></Product>";
+
+        return retString;
+    }
 
 
 

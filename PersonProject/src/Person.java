@@ -77,6 +77,32 @@ public class Person {
         return this.ID + ", " + this.firstName + ", " + this.lastName + ", " + this.title + ", " + YOB;
     }
 
+
+    public String toJSONRecord()
+    {
+        String retString = "";
+        char DQ = '\u0022';
+        retString =  "{" + DQ + "ID" + DQ + ":" + DQ + this.ID + DQ + ",";
+        retString += DQ + "firstName" + DQ + ":" + DQ + this.firstName + DQ + ",";
+        retString += " " + DQ + "lastName"  + DQ + ":" + DQ + this.lastName + DQ + ",";
+        retString += " " + DQ + "YOB"  + DQ + ":" + this.YOB + "}";
+
+        return retString;
+    }
+
+    public String toXMLRecord()
+    {
+        String retString = "";
+
+        retString = "<Person>" + "<ID>" + this.ID + "</ID>";
+        retString += "<firstName>" + this.firstName + "</firstName>";
+        retString += "<lastName>" + this.lastName + "</lastName>";
+        retString += "<YOB>" + this.YOB + "</YOB></Person>";
+
+        return retString;
+    }
+
+
     public String getAge(){
         Calendar calendar = Calendar.getInstance();
             return "Their age is currently: " + (calendar.get(Calendar.YEAR) - YOB);
